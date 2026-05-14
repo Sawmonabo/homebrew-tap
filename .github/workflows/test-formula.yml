@@ -1,0 +1,52 @@
+name: Test formula
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: test-formula-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: brew install + test on macOS
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+
+    - name: Cache Homebrew Bundler RubyGems
+      uses: actions/cache@v5
+      with:
+        path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+        key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+        restore-keys: ${{ runner.os }}-rubygems-
+
+    # Symlink the checkout into Homebrew's expected tap location so
+    # `brew install Sawmonabo/tap/<formula>` resolves to this workspace.
+    - name: Wire checkout as Sawmonabo/tap
+      run: |
+        TAP_PATH="$(brew --repository)/Library/Taps/sawmonabo/homebrew-tap"
+        rm -rf "$TAP_PATH"
+        mkdir -p "$(dirname "$TAP_PATH")"
+        ln -sf "$GITHUB_WORKSPACE" "$TAP_PATH"
+        brew tap-info Sawmonabo/tap
+
+    - name: brew install --build-from-source
+      run: brew install --build-from-source Sawmonabo/tap/sidekick-usages
+
+    - name: brew test
+      run: brew test Sawmonabo/tap/sidekick-usages
+
+    # Audit is informational — formula-style warnings shouldn't gate the tap.
+    - name: brew audit (non-blocking)
+      run: brew audit --strict Sawmonabo/tap/sidekick-usages || true
