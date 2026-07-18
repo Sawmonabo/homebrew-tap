@@ -5,21 +5,21 @@
 class AgentBrain < Formula
   desc "Invisible cross-machine sync for AI coding agents' per-project memory"
   homepage "https://github.com/Sawmonabo/agent-brain"
-  version "1.0.0"
+  version "1.0.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_darwin_amd64.tar.gz"
-      sha256 "5a806cb92085dad80f686e94fcfe6ec4aad61525ae7b314cc7b26ea60c81e84b"
+      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.1/agent-brain_1.0.1_darwin_amd64.tar.gz"
+      sha256 "3cb0be6b024805f367eb72cb55c0cf9278617e0bae77e4605e77a9ee45699892"
 
       define_method(:install) do
         bin.install "agent-brain"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_darwin_arm64.tar.gz"
-      sha256 "a0b52ba16a5a07c0e9fb62c5291df29b618531100cd4dbb955d8fbe5e0189731"
+      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.1/agent-brain_1.0.1_darwin_arm64.tar.gz"
+      sha256 "b0628c177e745539f678b3c1bc7cbdf0ce4605874d1ac6b1817fcde36e82125f"
 
       define_method(:install) do
         bin.install "agent-brain"
@@ -29,15 +29,15 @@ class AgentBrain < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_linux_amd64.tar.gz"
-      sha256 "a9324db46a1c7812fae911273dc1be6f57813cd850ab6c7d3f4d3cac8517d670"
+      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.1/agent-brain_1.0.1_linux_amd64.tar.gz"
+      sha256 "83a932b3ea357f8612aca918510665a371ae99fc38a1f3fd1d37c6881d479feb"
       define_method(:install) do
         bin.install "agent-brain"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_linux_arm64.tar.gz"
-      sha256 "a0cf3295c24907a1977a0559bc5e795de610af42734206fb138f64e0eb94493d"
+      url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.1/agent-brain_1.0.1_linux_arm64.tar.gz"
+      sha256 "5c95f424dc5ccfef2837332396c17c2dd588b64b5e0f663e6436830aae5534f9"
       define_method(:install) do
         bin.install "agent-brain"
       end
