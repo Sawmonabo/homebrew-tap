@@ -11,7 +11,7 @@ class AgentBrain < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_darwin_amd64.tar.gz"
-      sha256 "459913f82e3100ec362bd916a8414f37bc68cece3ecf9e2bdb8e5cfff33be121"
+      sha256 "5a806cb92085dad80f686e94fcfe6ec4aad61525ae7b314cc7b26ea60c81e84b"
 
       define_method(:install) do
         bin.install "agent-brain"
@@ -19,7 +19,7 @@ class AgentBrain < Formula
     end
     if Hardware::CPU.arm?
       url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_darwin_arm64.tar.gz"
-      sha256 "882d1ba3df67af3fbbd6ca9551eadb08fce79dbb9f3eb374232d66af98a0478f"
+      sha256 "a0b52ba16a5a07c0e9fb62c5291df29b618531100cd4dbb955d8fbe5e0189731"
 
       define_method(:install) do
         bin.install "agent-brain"
@@ -30,14 +30,14 @@ class AgentBrain < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_linux_amd64.tar.gz"
-      sha256 "6a96923e56bcebf5743199441d696779d9db590c73af5d37bafa814e87d3d516"
+      sha256 "a9324db46a1c7812fae911273dc1be6f57813cd850ab6c7d3f4d3cac8517d670"
       define_method(:install) do
         bin.install "agent-brain"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/Sawmonabo/agent-brain/releases/download/v1.0.0/agent-brain_1.0.0_linux_arm64.tar.gz"
-      sha256 "de71d8d1b3d861b9c7e592503b1cf6683d9a516fc1a78cff655f7cf6048da563"
+      sha256 "a0cf3295c24907a1977a0559bc5e795de610af42734206fb138f64e0eb94493d"
       define_method(:install) do
         bin.install "agent-brain"
       end
